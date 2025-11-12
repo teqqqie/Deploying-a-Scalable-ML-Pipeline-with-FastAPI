@@ -1,5 +1,5 @@
-import pytest
-import pandas as pd
+# import pytest
+# import pandas as pd
 import numpy as np
 
 from sklearn.ensemble import RandomForestClassifier
@@ -8,7 +8,6 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from ml.model import train_model, compute_model_metrics
 from train_model import cat_features
 
-# TODO: add necessary import
 
 # TODO: implement the first test. Change the function name and input as needed
 def test_model_algorithm_type():
@@ -40,7 +39,6 @@ def test_model_metrics():
     assert fbeta == fbeta_score(y, preds, beta=1, zero_division=1), "F-beta score does not match expected value"
     assert recall == recall_score(y, preds, zero_division=1), "Recall does not match expected value"
     assert precision == precision_score(y, preds, zero_division=1), "Precision does not match expected value"
-
 
 
 # TODO: implement the third test. Change the function name and input as needed

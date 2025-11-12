@@ -1,4 +1,4 @@
-import os
+# import os
 
 import pandas as pd
 from fastapi import FastAPI
@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
+
 
 # DO NOT MODIFY
 class Data(BaseModel):
@@ -26,14 +27,15 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-path = "model/encoder.pkl" # TODO: enter the path for the saved encoder 
+
+path = "model/encoder.pkl"  # TODO: enter the path for the saved encoder
 encoder = load_model(path)
 
-path = "model/model.pkl" # TODO: enter the path for the saved model 
+path = "model/model.pkl"  # TODO: enter the path for the saved model
 model = load_model(path)
 
 # TODO: create a RESTful API using FastAPI
-app = FastAPI() # your code here
+app = FastAPI()  # your code here
 
 # TODO: create a GET on the root giving a welcome message
 @app.get("/")
@@ -63,11 +65,12 @@ async def post_inference(data: Data):
         "sex",
         "native-country",
     ]
+
     data_processed, _, _, _ = process_data(
-        X = data, # your code here
-        categorical_features=cat_features, # use data as data input
-        training=False, # do not need to pass lb as input
-        encoder=encoder # use the loaded encoder
+        X=data,  # your code here
+        categorical_features=cat_features,  # use data as data input
+        training=False,  # do not need to pass lb as input
+        encoder=encoder  # use the loaded encoder
     )
-    _inference = inference(model, data_processed) # your code here to predict the result using data_processed
+    _inference = inference(model, data_processed)  # your code here to predict the result using data_processed
     return {"result": apply_label(_inference)}
