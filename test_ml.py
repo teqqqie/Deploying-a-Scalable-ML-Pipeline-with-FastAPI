@@ -1,4 +1,7 @@
 import pytest
+import pandas as pd
+import numpy as np
+
 # TODO: add necessary import
 
 # TODO: implement the first test. Change the function name and input as needed
